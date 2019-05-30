@@ -1,0 +1,142 @@
+<html lang="en">
+  <head>
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+      <meta charset="utf-8"/>
+      <title> Fruit Ninja Webgl Version</title>
+
+
+  </head>
+
+  <body onload = "main()">
+
+
+
+
+      <div style="background-color: yellow">
+
+
+      <div class = "row">
+        <div class="column">
+          <canvas id="webgl" width="900" height="600">
+            Please use a browser that supports "canvas"
+          </canvas>
+        </div>
+
+        <div class="column">
+   
+            <button class="btn btn-danger" type = "button" id = "clearCanvas" onclick="resetScore()">    Reset</button>
+            <br>
+            <br>
+
+
+            <div class = "d-flex justify-content-center" style="background-color: purple"class = "score">
+                <h1>
+                  My Score
+                </h1>
+                
+              </div>
+            <div class = "d-flex justify-content-center" style="background-color: blue"class = "score" >
+              <h1 id = "Points">
+                0
+              </h1>
+              
+            </div>
+            <br>
+            <div class = "hearts" style="">
+              <i class="fas fa-heart fa-5x" style="color:red" id= 1></i>
+              <i class="fas fa-heart fa-5x" style="color:red" id= 2></i>
+              <i class="fas fa-heart fa-5x" style="color:red" id= 3></i>
+            </div>
+
+            <br>
+
+            <div  style="background-color: blue"class = "score">
+                <h1>
+                  Select this shape
+                </h1>
+              
+              </div>
+            
+        </div>
+      </div>
+      <br>
+    </div>
+    
+
+
+
+    <!-- Buttons to load and print file content -->
+    <br><br>
+    Select File: <input type="file" id="fileInput"/>
+    Select Texture: <input type="file" id="texInput"/>
+    <button type="button" id="fileLoad">Print file content</button>
+
+
+    <br>
+
+    <!-- Example Slider -->
+    <br><br>
+    Slider: <input type="range" min="0" max="1000" value="1000" class="slider" id="exampleSlider">
+
+    <br> <br>
+    <button onclick="selectShape('square')">Spinning Squares</button>
+    <button onclick="selectShape('triangle')"> Triangles</button>
+    <button onclick="selectShape('circle')">Randomly Moving Circles</button>
+    <button onclick="selectShape('cube')"> Tilted Cube</button>
+
+  <br>
+  <form name="form" id="form" onsubmit="return false">
+    <button name="button" id="buttonColorType" onclick="changeValue();" value="before">Solid</button>
+</form>
+
+
+    Red: <input value = "100" type="range" id = "redSlider" >
+    Green: <input value = "0" type="range" id = "greenSlider">
+    Blue: <input value = "0" type="range" id = "blueSlider">
+
+    Shape Size: <input value = "25" type="range" id = "shapeSlider">
+
+    (Circles) Segment Count: <input min = "3" value = "10" type="range" id = "segmentCountSlider">
+
+    <script>
+      function resetScore(){
+        document.getElementById("Points").textContent = "0";
+      }
+
+    </script>
+    <!-- Include external libs -->
+    <script src = "lib/webgl-utils.js"></script>
+    <script src = "lib/webgl-render.js"></script>
+    <script src = "lib/webgl-debug.js"></script>
+    <script src = "lib/webgl-loader.js"></script>
+    <script src = "lib/cuon-utils.js"></script>
+    <script src = "lib/cuon-matrix.js"></script>
+
+    <!-- Include shaders -->
+    <script src = "src/graphics/shaders/shader.js"></script>
+    <script src = "src/graphics/shaders/asg3.js"></script>
+
+    <!-- Include Base code -->
+    <script src = "src/graphics/geometry/vertex.js"></script>
+    <script src = "src/graphics/geometry/geometry.js"></script>
+    <script src = "src/graphics/geometry/shapes/triangle.js"></script>
+    <script src = "src/graphics/geometry/shapes/oldtriangle.js"></script>
+    <script src = "src/graphics/geometry/shapes/squares.js"></script>
+    <script src = "src/graphics/geometry/shapes/circle.js"></script>
+    <script src = "src/graphics/geometry/shapes/cube.js"></script>
+    <script src = "src/graphics/geometry/shapes/cubetextured.js"></script>
+    <script src = "src/graphics/geometry/shapes/custom.js"></script>
+    <script src = "src/graphics/renderer.js"></script>
+    <script src = "src/graphics/scene.js"></script>
+    <script src = "src/main.js"></script>
+    <script src = "src/input.js"></script>
+
+<!-- bootstrap stuff -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+
+
+</html>
