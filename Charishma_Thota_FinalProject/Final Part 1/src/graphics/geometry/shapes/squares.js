@@ -22,6 +22,10 @@ class Square extends Geometry {
         this.red = Math.random();
        this.blue = Math.random();
        this.green = Math.random();
+
+       if(id == 0){
+        updateShape(2, this.red, this.green, this.blue);
+    }
         
         this.vertices = this.generateTriangleVertices(mouseX,mouseY);
         this.faces = {0: [0, 1, 2]};
@@ -45,13 +49,13 @@ class Square extends Geometry {
   
       const shapeSize = 0.1;
   
-      var vertex1 = new Vertex( shapeSize+xMouse, -shapeSize+yMouse, 0.0, this.red, this.blue, this.green);
-      var vertex2 = new Vertex(-shapeSize+xMouse, -shapeSize+yMouse, 0.0, this.red, this.blue, this.green);
-      var vertex3 = new Vertex( -shapeSize+xMouse,   shapeSize+yMouse, 0.0, this.red, this.blue, this.green);
+      var vertex1 = new Vertex( shapeSize+xMouse, -shapeSize+yMouse, 0.0, this.red, this.green, this.blue);
+      var vertex2 = new Vertex(-shapeSize+xMouse, -shapeSize+yMouse, 0.0, this.red, this.green, this.blue);
+      var vertex3 = new Vertex( -shapeSize+xMouse,   shapeSize+yMouse, 0.0, this.red, this.green, this.blue);
 
-      var vertex4 = new Vertex(-shapeSize+xMouse, shapeSize+yMouse, 0.0, this.red, this.blue, this.green);
-      var vertex5 = new Vertex( shapeSize+xMouse, shapeSize+yMouse, 0.0, this.red, this.blue, this.green);
-      var vertex6 = new Vertex( shapeSize+xMouse, -shapeSize+yMouse, 0.0, this.red, this.blue, this.green);
+      var vertex4 = new Vertex(-shapeSize+xMouse, shapeSize+yMouse, 0.0, this.red, this.green, this.blue);
+      var vertex5 = new Vertex( shapeSize+xMouse, shapeSize+yMouse, 0.0, this.red, this.green, this.blue);
+      var vertex6 = new Vertex( shapeSize+xMouse, -shapeSize+yMouse, 0.0, this.red, this.green, this.blue);
 
 
 

@@ -22,6 +22,14 @@ class Oldtriangle extends Geometry {
         this.flag = 0;
         //console.log(this.speed);
 
+        this.red = Math.random();
+       this.blue = Math.random();
+       this.green = Math.random();
+
+       if(id == 0){
+        updateShape(1, this.red, this.green, this.blue);
+    }
+
         speed = 1.01 * speed;
 
         this.vertices = this.generateTriangleVertices(mouseX,mouseY);
@@ -44,14 +52,10 @@ class Oldtriangle extends Geometry {
     generateTriangleVertices(xMouse, yMouse) {
       var vertices = []
       const shapeSize = 0.1;
-
-      var red = Math.random();
-       var blue = Math.random();
-       var green = Math.random();
   
-      var vertex1 = new Vertex( -shapeSize+xMouse, shapeSize+yMouse, 0.0, red, blue, green);
-      var vertex2 = new Vertex(shapeSize+xMouse, shapeSize+yMouse, 0.0, red, blue, green);
-      var vertex3 = new Vertex( xMouse,   -shapeSize+yMouse, 0.0, red, blue, green);
+      var vertex1 = new Vertex( -shapeSize+xMouse, shapeSize+yMouse, 0.0, this.red, this.green, this.blue);
+      var vertex2 = new Vertex(shapeSize+xMouse, shapeSize+yMouse, 0.0, this.red, this.green, this.blue);
+      var vertex3 = new Vertex( xMouse, -shapeSize+yMouse, 0.0, this.red, this.green, this.blue);
   
   
       vertices.push(vertex1);

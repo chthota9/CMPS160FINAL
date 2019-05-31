@@ -53,6 +53,7 @@ function main() {
   oldshader.addUniform("u_ModelMatrix", "mat4", idMatrix.elements);
   
   shader.addUniform("u_ModelMatrix", "mat4", idMatrix.elements);
+  this.shader = oldshader;
 
   // var 
   // console.log()
@@ -165,6 +166,14 @@ function newRand(j){
   scene.addGeometry(shape);
 }
 
-function updateShape(shape, r, g, b){
-
+function updateShape(mode, r, g, b){
+  var shape;
+  if(mode == 2){
+    shape = new SquareCopy(this.shader, r,g,b);
+  } else if(mode == 1){
+    shape = new TriangleCopy(this.shader, r,g,b);
+  } else {
+    shape = new CircleCopy(this.shader, r,g,b);
+  }
+  scene.addGeometry(shape);
 }

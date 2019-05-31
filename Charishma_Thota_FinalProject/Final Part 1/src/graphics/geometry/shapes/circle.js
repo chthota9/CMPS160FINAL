@@ -22,6 +22,14 @@ class Circle extends Geometry {
         //console.log(this.speed);
         speed = speed * 1.01;
 
+        this.red = Math.random();
+       this.blue = Math.random();
+       this.green = Math.random();
+
+       if(id == 0){
+           updateShape(0, this.red, this.green, this.blue);
+       }
+
         //this.y = 1;
         this.vertices = this.generateTriangleVertices(mouseX,mouseY);
         this.faces = {0: [0, 1, 2]};
@@ -56,11 +64,9 @@ class Circle extends Geometry {
         var shapeSize = 0.1;
        var r = shapeSize;
  
-       var red = Math.random();
-       var blue = Math.random();
-       var green = Math.random();
-       var center = new Vertex(xMouse, yMouse,0.0, red, blue, green); 
-       var last = new Vertex(xMouse, yMouse,0.0, red, blue, green); 
+       
+       var center = new Vertex(xMouse, yMouse,0.0, this.red, this.green, this.blue); 
+       var last = new Vertex(xMouse, yMouse,0.0, this.red, this.green, this.blue); 
        
        
        const segmentCount = 20;
@@ -69,7 +75,7 @@ class Circle extends Geometry {
        for (var i = 0; i <= segmentCount; i++){
          
          vertices.push(center);
-         var tVertext = new Vertex(xMouse + r*Math.cos(i*2*Math.PI/segmentCount),yMouse + r*Math.sin(i*2*Math.PI/segmentCount) ,0.0, red, blue, green);
+         var tVertext = new Vertex(xMouse + r*Math.cos(i*2*Math.PI/segmentCount),yMouse + r*Math.sin(i*2*Math.PI/segmentCount) ,0.0, this.red, this.green, this.blue);
          vertices.push(tVertext);
          vertices.push(last)
          last = tVertext
