@@ -12,15 +12,15 @@ class Oldtriangle extends Geometry {
      * @param {Shader} shader Shading object used to shade geometry
      * @returns {Oldtriangle} Triangle created
      */
-    constructor(shader,mouseX,mouseY, flag, id) {
+    constructor(shader,mouseX,mouseY, id) {
         super(shader);
   
         this.mx = mouseX;
         this.my = mouseY;
-        this.flag = flag;
         this.speed = speed;
         this.id = id;
-        console.log(this.speed);
+        this.flag = 0;
+        //console.log(this.speed);
 
         speed = 1.01 * speed;
 
@@ -63,24 +63,35 @@ class Oldtriangle extends Geometry {
      render() {
         //console.log(this.modelMatrix);
 
-
-        if(this.flag == 1){
+        if(this.id == 0){
             this.modelMatrix = this.modelMatrix.multiply(this.downtranslationMatrix);
             yRafi -= this.speed;
             if(yRafi < -1){
-                this.modelMatrix = this.modelMatrix.multiply(this.backTranslateMatrix);
-                yRafi = 1;
+                console.log("in here", yRafi)
+                
+                // this.modelMatrix = this.modelMatrix.multiply(this.backTranslateMatrix);
+                // yRafi = 1;
                 document.getElementById(lives--).style = "color:red; visibility: hidden";
+                //lives--;
                 if(lives == 0){
                     reset();
+                } else {
+                    if(this.flag == 0){
+                        newRand(this.id);
+                        this.id = 6;
+                        this.flag = 1;
+                    }
                 }
             }
         } else {
             this.modelMatrix = this.modelMatrix.multiply(this.downtranslationMatrix);
             this.my -= this.speed;
             if(this.my < -1){
-                this.modelMatrix = this.modelMatrix.multiply(this.backTranslateMatrix);
-                this.my = 1;
+                if(this.flag == 0){
+                    newRand(this.id);
+                    this.flag = 1;
+                }
+                
             }
         }
         

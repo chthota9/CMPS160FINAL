@@ -59,7 +59,7 @@ class InputHandler {
      * Function called upon mouse click.
      */
     click(ev) {
-        console.log("here");
+        
         const mX = ev.clientX;
         const mY = ev.clientY;
         const width = this.canvas.clientWidth;
@@ -68,12 +68,12 @@ class InputHandler {
         const xMouse  = 2*(mX/width) - 1.0
         const yMouse = -1*(2*(mY/height) - 1.0)
 
-        console.log(xMouse, yMouse, yRafi)
+        // console.log(xMouse, yMouse, yRafi)
 
         if(xMouse < xRafi+0.1 && xMouse > xRafi-0.1 && yMouse > yRafi - 0.1 && yMouse < yRafi + 0.1){
           document.getElementById("Points").textContent = ++score;  
         } else {
-          console.log(lives);
+        //   console.log(lives);
           document.getElementById(lives--).style = "color:red; visibility: hidden";
           if(lives == 0){
               this.resetScore();
@@ -87,6 +87,7 @@ class InputHandler {
      * 
      */
     resetScore(){
+        //console.log("yeet")
         reset();
       }
 

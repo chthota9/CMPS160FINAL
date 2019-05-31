@@ -12,18 +12,23 @@ class Square extends Geometry {
      * @param {Shader} shader Shading object used to shade geometry
      * @returns {Square} Triangle created
      */
-    constructor(shader,mouseX,mouseY, flag, id) {
+    constructor(shader,mouseX,mouseY, id) {
         super(shader);
         this.mx = mouseX;
         this.my = mouseY;
-        this.flag = flag;
         this.id = id;
-        console.log(this.speed);
+        this.flag = 0;
+
+        this.red = Math.random();
+       this.blue = Math.random();
+       this.green = Math.random();
+        
         this.vertices = this.generateTriangleVertices(mouseX,mouseY);
         this.faces = {0: [0, 1, 2]};
         this.rot = 0;
         this.speed = speed;
         speed = 1.01*speed;
+        //console.log(this.speed);
   
         this.downtranslationMatrix = new Matrix4();
       this.downtranslationMatrix.setTranslate(0,-this.speed,0);
@@ -39,18 +44,14 @@ class Square extends Geometry {
       var vertices = []
   
       const shapeSize = 0.1;
-
-      var red = Math.random();
-       var blue = Math.random();
-       var green = Math.random();
   
-      var vertex1 = new Vertex( shapeSize+xMouse, -shapeSize+yMouse, 0.0, red, blue, green);
-      var vertex2 = new Vertex(-shapeSize+xMouse, -shapeSize+yMouse, 0.0, red, blue, green);
-      var vertex3 = new Vertex( -shapeSize+xMouse,   shapeSize+yMouse, 0.0, red, blue, green);
+      var vertex1 = new Vertex( shapeSize+xMouse, -shapeSize+yMouse, 0.0, this.red, this.blue, this.green);
+      var vertex2 = new Vertex(-shapeSize+xMouse, -shapeSize+yMouse, 0.0, this.red, this.blue, this.green);
+      var vertex3 = new Vertex( -shapeSize+xMouse,   shapeSize+yMouse, 0.0, this.red, this.blue, this.green);
 
-      var vertex4 = new Vertex(-shapeSize+xMouse, shapeSize+yMouse, 0.0, red, blue, green);
-      var vertex5 = new Vertex( shapeSize+xMouse, shapeSize+yMouse, 0.0, red, blue, green);
-      var vertex6 = new Vertex( shapeSize+xMouse,   -shapeSize+yMouse, 0.0, red, blue, green);
+      var vertex4 = new Vertex(-shapeSize+xMouse, shapeSize+yMouse, 0.0, this.red, this.blue, this.green);
+      var vertex5 = new Vertex( shapeSize+xMouse, shapeSize+yMouse, 0.0, this.red, this.blue, this.green);
+      var vertex6 = new Vertex( shapeSize+xMouse, -shapeSize+yMouse, 0.0, this.red, this.blue, this.green);
 
 
 
@@ -67,24 +68,34 @@ class Square extends Geometry {
   
      render() {
        
-        if(this.flag == 1){
+        if(this.id == 0){
             this.modelMatrix = this.modelMatrix.multiply(this.downtranslationMatrix);
             yRafi -= this.speed;
             if(yRafi < -1){
-                this.modelMatrix = this.modelMatrix.multiply(this.backTranslateMatrix);
-                yRafi = 1;
+                console.log("in here", yRafi);
+                // this.modelMatrix = this.modelMatrix.multiply(this.backTranslateMatrix);
+                // yRafi = 1;
+                
                 document.getElementById(lives--).style = "color:red; visibility: hidden";
                 //lives--;
                 if(lives == 0){
                     reset();
+                } else {
+                    if(this.flag == 0){
+                        newRand(this.id);
+                        this.id =6;
+                        this.flag = 1;
+                    }
                 }
             }    
         } else {
             this.modelMatrix = this.modelMatrix.multiply(this.downtranslationMatrix);
             this.my -= this.speed;
             if(this.my < -1){
-                this.modelMatrix = this.modelMatrix.multiply(this.backTranslateMatrix);
-                this.my = 1;
+                if(this.flag == 0){
+                    newRand(this.id);
+                    this.flag = 1;
+                }
             }
         }
           
