@@ -53,7 +53,13 @@ function main() {
   oldshader.addUniform("u_ModelMatrix", "mat4", idMatrix.elements);
   
   shader.addUniform("u_ModelMatrix", "mat4", idMatrix.elements);
-  this.shader = oldshader;
+
+  otherShader = new Shader(gl, ASG2_VSHADER, ASG2_FSHADER);
+  otherShader.addAttribute("a_Position");
+  otherShader.addAttribute("a_Color");
+
+
+  this.shader = otherShader;
 
   // var 
   // console.log()
@@ -174,6 +180,43 @@ function updateShape(mode, r, g, b){
     shape = new TriangleCopy(this.shader, r,g,b);
   } else {
     shape = new CircleCopy(this.shader, r,g,b);
+  }
+  scene.addGeometry(shape);
+}
+
+function reset2(){
+  // document.getElementById("Points").textContent = "0";
+  // document.getElementById(1).style = "color:red; visibility: visible";
+  // document.getElementById(2).style = "color:red; visibility: visible";
+  // document.getElementById(3).style = "color:red; visibility: visible";
+  //main();
+  // lives = 3;
+  // score = 0;
+  // speed = 0.01;
+  this.scene.clearGeometries();
+
+  for(var x =0; x < 5; x++){
+    newRand(x);
+  }
+}
+
+function newRand(j){
+  console.log(speed)
+  if (j == 0){
+    xRafi = 1.8*Math.random()-1;
+    yRafi = 1;
+    xArray[j] = xRafi;
+  } else {
+    xArray[j] = 1.8*Math.random()-1;
+  }
+  
+  rand = 3*Math.random();
+  if(rand > 2){
+    shape = new Square(oldshader, xArray[j] ,1, j);
+  } else if (rand > 1){
+    shape = new Oldtriangle(oldshader, xArray[j],1, j);
+  } else {
+    shape = new Circle(oldshader, xArray[j],1, j);
   }
   scene.addGeometry(shape);
 }

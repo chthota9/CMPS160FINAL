@@ -71,12 +71,15 @@ class InputHandler {
         // console.log(xMouse, yMouse, yRafi)
 
         if(xMouse < xRafi+0.1 && xMouse > xRafi-0.1 && yMouse > yRafi - 0.1 && yMouse < yRafi + 0.1){
-          document.getElementById("Points").textContent = ++score;  
+          document.getElementById("Points").textContent = ++score;
+          reset2();
         } else {
         //   console.log(lives);
           document.getElementById(lives--).style = "color:red; visibility: hidden";
           if(lives == 0){
               this.resetScore();
+          } else {
+              reset2();
           }
         }
       
